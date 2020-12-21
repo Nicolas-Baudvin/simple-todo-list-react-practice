@@ -1,0 +1,15 @@
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.title-icon {
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.title-icon:hover {
+    transform: rotate(360deg);
+}

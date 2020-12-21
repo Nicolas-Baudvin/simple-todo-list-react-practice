@@ -1,0 +1,37 @@
+.form {
+    background-color: #25273C;
+    width: 600px;
+    border-radius: 5px;
+    display: flex;
+    padding: .8em;
+    align-items: center;
+}
+
+.form-img {
+    position: absolute;
+    top: 32%;
+}
+
+.form-img-container {
+    margin: 0 .5em;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+}
+
+.form-img-container:hover {
+    background: rgb(111, 187, 249);
+    background: linear-gradient(153deg, rgba(111, 187, 249, 1) 0%, rgba(165, 121, 245, 1) 100%);
+}
+
+.checked {
+    background: rgb(111, 187, 249);
+    background: linear-gradient(153deg, rgba(111, 187, 249, 1) 0%, rgba(165, 121, 245, 1) 100%);
+}
