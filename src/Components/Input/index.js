@@ -25,7 +25,7 @@ const TaskInput = ({ tasks, setTasks }) => {
                 isChecked && <img className="form-img" src={`${process.env.PUBLIC_URL}/img/icon-check.svg`} alt="" />
             }
         </div>
-        <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Type your task here" />
+        <Input className="form-input" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Type your task here" />
     </form>
 };
 
