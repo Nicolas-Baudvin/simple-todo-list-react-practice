@@ -22,26 +22,21 @@ const Tasks = ({ tasks, setTasks }) => {
 
     const handleClickShowAllTasks = () => {
         setActiveOptions({ completed: false, all: true, active: false });
-        setSortedTasks(tasks);
     };
 
     const handleClickShowActiveTasks = () => {
         setActiveOptions({ active: true, all: false, completed: false });
-        const newSortedTasks = tasks.filter((task, i) => !task.isChecked);
-        setSortedTasks([...newSortedTasks]);
     };
 
     const handleClickShowCompletedTasks = () => {
         setActiveOptions({ completed: true, all: false, active: false });
-        const newSortedTasks = tasks.filter((task) => task.isChecked);
-        setSortedTasks([...newSortedTasks]);
     };
 
-    const handleClickCheckTask = (clickedIndex) => {
-        const newTasks = tasks.map((task, i) => {
-            if (i === clickedIndex)
+    const handleClickCheckTask = (taskClicked) => {
+        console.log(taskClicked);
+        const newTasks = tasks.map((task) => {
+            if (taskClicked.id === task.id)
                 task.isChecked = !task.isChecked;
-
             return task;
         });
 
@@ -50,18 +45,29 @@ const Tasks = ({ tasks, setTasks }) => {
 
     useEffect(() => {
         const { all, active, completed } = activeOptions;
-        if (!all && !active && !completed)
+
+        if (all)
         {
             setSortedTasks([...tasks]);
         }
-    }, [tasks]);
+        else if (completed)
+        {
+            const newSortedTasks = tasks.filter((task) => task.isChecked);
+            setSortedTasks([...newSortedTasks]);
+        }
+        else if (active)
+        {
+            const newSortedTasks = tasks.filter((task, i) => !task.isChecked);
+            setSortedTasks([...newSortedTasks]);
+        }
+    }, [activeOptions, tasks]);
 
     return <div className="tasks">
         <div className="tasks-container">
 
             {
                 sortedTasks.length !== 0 && sortedTasks.map((task, i) => <div key={i} className="task">
-                    <div onClick={() => handleClickCheckTask(i)} className={task.isChecked ? "task-img-container checked" : "task-img-container"}>
+                    <div onClick={() => handleClickCheckTask(task)} className={task.isChecked ? "task-img-container checked" : "task-img-container"}>
                         {
                             task.isChecked && <img className="form-img" src={`${process.env.PUBLIC_URL}/img/icon-check.svg`} alt="" />
                         }
