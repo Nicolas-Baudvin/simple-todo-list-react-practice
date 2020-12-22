@@ -12,7 +12,7 @@ const TaskInput = ({ tasks, setTasks }) => {
         if (value)
         {
             const newTasks = tasks;
-            newTasks.push({ title: value, isChecked });
+            newTasks.push({ title: value, isChecked, id: tasks.length });
             console.log(newTasks);
             setTasks([...newTasks]);
             setValue("");
