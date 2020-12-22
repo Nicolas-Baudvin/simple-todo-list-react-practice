@@ -16,14 +16,24 @@ describe("Input", () => {
         expect(wrapper.find(".form").length).toEqual(1);
     });
 
-    it("should call setState", () => {
+    it("should call setState on change event", () => {
         jest.spyOn(React, "useState").mockImplementation(useStateMock);
         const wrapper = shallow(<TaskInput />);
-        console.log(wrapper.debug());
         const input = wrapper.find(".form-input");
 
         input.simulate("change", { target: { value: "test" } });
 
         expect(setState).toHaveBeenCalledWith("test");
+    });
+
+    it("should call setState on click event", () => {
+        jest.spyOn(React, "useState").mockImplementation(useStateMock);
+        const wrapper = shallow(<TaskInput />);
+
+        const clickable = wrapper.find(".form-img-container");
+
+        clickable.simulate("click");
+
+        expect(setState).toHaveBeenCalled();
     });
 });
